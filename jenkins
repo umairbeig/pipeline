@@ -1,0 +1,22 @@
+pipeline {
+agent any
+stages {
+stage('Clone Git') { /*you can also specify git location */
+steps {
+git 'https://github.com/umairbeig/pipeline.git'
+}
+}
+stage('Build Code') {
+steps {
+sh "chmod u+x build.py"
+sh"python3 build.py"
+}
+}
+stage('Test Code') {
+steps {
+sh "chmod u+x test.py"
+sh"python3 test.py"
+}
+}
+}
+}
